@@ -9,6 +9,7 @@ public class SnakeController : MonoBehaviour
     [SerializeField] public float moveSpeed;
     [SerializeField] private float speedMultiplier;
     [SerializeField] private Transform segmentPrefab;
+    [SerializeField] private GameOverController gameOver;
     private float nextUpdate;
     private float horizontal;
     private float vertical;
@@ -95,8 +96,7 @@ public class SnakeController : MonoBehaviour
             Transform segment = Instantiate(segmentPrefab);
             segments.Add(segment);
             segment.position = segments[segments.Count - 1].position;
-        }
-        
+        }  
     }
 
     private void ResetGame()
@@ -110,7 +110,7 @@ public class SnakeController : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             ResetGame();
-            SceneManager.LoadScene(0);
+            gameOver.PlayerDead();
         }
     }
 }
