@@ -10,4 +10,10 @@ public class ScoreBoost : PowerUp
         collider2D.enabled = false;
         snakeController.Grow(5);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ImplementPowerUp();
+        randomizer.RandomizePowerUp();
+    }
 }
