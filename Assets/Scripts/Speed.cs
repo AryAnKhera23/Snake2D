@@ -6,27 +6,52 @@ using UnityEngine;
 public class Speed : PowerUp
 {
     [SerializeField] TextMeshProUGUI speedText;
-    bool isSpeedActive;
-    protected override void ImplementPowerUp()
+    
+    protected override void ImplementPowerUp(int player)
     {
-        if(!isSpeedActive)
-        {
+        
+            
+            SoundManager.Instance.Play(Sounds.PowerUpPickup);
             spriteRenderer.enabled = false;
             collider2D.enabled = false;
             speedText.enabled = true;
-            float originalSpeed = snakeController.moveSpeed;
-            snakeController.moveSpeed += snakeController.moveSpeed;
-            isSpeedActive = true;
-            StartCoroutine(ResetSpeed(originalSpeed, 5f));
-        }
+            if(player == 1) {
+                IncreaseSpeed(snake1Controller);
+            }
+            else if(player == 2) {
+                IncreaseSpeed(snake2Controller);
+            }
+            
+        
         
     }
 
-    private IEnumerator ResetSpeed(float originalSpeed, float delay)
+    private void IncreaseSpeed(SnakeController snakeController)
     {
-        yield return new WaitForSeconds(delay);
-        isSpeedActive = false;
-        speedText.enabled = false;
-        snakeController.moveSpeed = originalSpeed;
+        
+        snakeController.moveSpeed += snakeController.moveSpeed;
+        Invoke(nameof(ResetSpeed), 5f);
+    }
+
+    private void ResetSpeed()
+    {
+        if(speedText != null) {
+            speedText.enabled = false;
+        }
+
+        if(snake1Controller != null)
+        {
+            snake1Controller.moveSpeed = snake1Controller.originalSpeed;
+        }
+        if(snake2Controller != null)
+        {
+            snake2Controller.moveSpeed = snake2Controller.originalSpeed;
+        }
+                  
+    }
+
+    private void OnDestroy()
+    {
+        ResetSpeed();
     }
 }

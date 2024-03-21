@@ -8,36 +8,39 @@ public enum FoodType
     MassGainer,
     MassBurner
 };
-public class Food : Consumables
+public abstract class Food : Consumables
 {
-    [SerializeField] private FoodType type;
-    [SerializeField] private BoxCollider2D boundary;
-    [SerializeField] private SnakeController snakeController;
-    
+    protected new BoxCollider2D collider2D;
+    protected SpriteRenderer spriteRenderer;
 
 
     private void Start()
     {
-        if(randomizer != null)
-        {
-            randomizer.RandomizePosition(gameObject);
-        }
-        else
-        {
-            Debug.Log("null randomizer");
-        }
-        
+        collider2D = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    protected abstract void ImplementFood(int player);
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if(collision.gameObject.layer == 3)
+        if(collision.TryGetComponent<SnakeController>(out snake1Controller))
         {
-            SoundManager.Instance.Play(Sounds.FoodPickup);
-            snakeController.Grow(1);
-            randomizer.RandomizePosition(gameObject);
+            if(snake1Controller.player == 1)
+            {
+                ImplementFood(1);
+            }
+            
+        }
+        if (collision.TryGetComponent<SnakeController>(out snake2Controller))
+        {
+            if (snake1Controller.player == 2)
+            {
+                ImplementFood(2);
+               
+            }
+
         }
     }
 

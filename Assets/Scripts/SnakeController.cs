@@ -10,18 +10,21 @@ public class SnakeController : MonoBehaviour
     [SerializeField] private float speedMultiplier;
     [SerializeField] private Transform segmentPrefab;
     [SerializeField] private GameOverController gameOver;
+    [SerializeField] public int player = 1;
+    [SerializeField] private float gameOverDelay = 1f;
     private float nextUpdate;
     private float horizontal;
     private float vertical;
     private Vector2 direction;
     public List<Transform> segments;
+    public float originalSpeed;
     
 
 
     
     private void Start()
     {
-        
+        originalSpeed = moveSpeed;
         segments = new List<Transform>
         {
             transform
@@ -40,8 +43,17 @@ public class SnakeController : MonoBehaviour
 
     private void ProcessInput()
     {
-        horizontal = Input.GetAxisRaw("ADHorizontal");
-        vertical = Input.GetAxisRaw("WSVertical");
+        if(player == 1)
+        {
+            horizontal = Input.GetAxisRaw("ADHorizontal");
+            vertical = Input.GetAxisRaw("WSVertical");
+        }
+        else if (player == 2)
+        {
+            horizontal = Input.GetAxisRaw("ArrowHorizontal");
+            vertical = Input.GetAxisRaw("ArrowVertical");
+        }
+        
         if (vertical > 0)
         {
             direction = Vector2.up;
@@ -103,18 +115,44 @@ public class SnakeController : MonoBehaviour
         }
     }
 
+    public void Shrink(int segmentCount)
+    {
+        if (segments.Count > 1) 
+        {
+            int removeCount = Mathf.Max(segments.Count - segmentCount, 1);
+            for (int i = segments.Count - 1; i >= removeCount; i--)
+            {
+                Destroy(segments[i].gameObject);
+                segments.RemoveAt(i);
+            }
+        }
+    }
+
+
     private void ResetGame()
     { 
         segments.Clear();
     }
 
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
         if (collision.gameObject.layer == 6)
         {
+            
+            if (player == 1)
+            {
+                SoundManager.Instance.Play(Sounds.PlayerDeath);
+                gameOver.PlayerDead(1);
+            }
+            else if(player == 2)
+            {
+                SoundManager.Instance.Play(Sounds.PlayerDeath);
+                gameOver.PlayerDead(2);
+            }
             ResetGame();
-            gameOver.PlayerDead();
+            
         }
     }
 }

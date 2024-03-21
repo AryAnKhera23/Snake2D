@@ -8,9 +8,12 @@ public class Randomizer : MonoBehaviour
     [SerializeField] private GameObject shieldPrefab;
     [SerializeField] private GameObject scoreBoostPrefab;
     [SerializeField] private GameObject speedPrefab;
+    [SerializeField] private GameObject massGainerPrefab;
+    [SerializeField] private GameObject massBurnerPrefab;
     [SerializeField] private Consumables consumables;
 
     private GameObject currentPowerUpInstance;
+    private GameObject currentFoodInstance;
 
     public void RandomizePosition(GameObject consumable)
     {
@@ -27,8 +30,7 @@ public class Randomizer : MonoBehaviour
     {
         if (currentPowerUpInstance != null)
         {
-            currentPowerUpInstance.GetComponent<SpriteRenderer>().enabled = false;
-            currentPowerUpInstance.GetComponent<Collider2D>().enabled = false;
+            Destroy(currentPowerUpInstance);
         }
 
         int powerup = Random.Range(0, 3);
@@ -53,5 +55,36 @@ public class Randomizer : MonoBehaviour
 
         currentPowerUpInstance = Instantiate(powerUpPrefab);
         RandomizePosition(currentPowerUpInstance);
+    }
+
+    public void RandomizeFood()
+    {
+        if (currentFoodInstance != null)
+        {
+            Destroy(currentFoodInstance);
+        }
+
+        int foodProbability = Random.Range(0, 100);
+
+        GameObject foodPrefab = null;
+
+
+        if(foodProbability < 65)
+        {
+            consumables.food = FoodType.MassGainer;
+            foodPrefab = massGainerPrefab;
+        }
+        else if(foodProbability > 65)
+        {
+            consumables.food = FoodType.MassBurner;
+            foodPrefab = massBurnerPrefab;
+        }
+        
+        if(foodPrefab != null)
+        {
+            currentFoodInstance = Instantiate(foodPrefab);
+            RandomizePosition(currentFoodInstance);
+        }
+        
     }
 }

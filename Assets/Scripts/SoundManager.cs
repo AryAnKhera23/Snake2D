@@ -103,9 +103,9 @@ public class SoundType
 public enum Sounds
 {
     ButtonClick,
-    PlayerMove,
     PlayerDeath,
     BGM,
-    FoodPickup,
+    MassGainerPickup,
+    MassBurnerPickup,
     PowerUpPickup
 }

@@ -4,42 +4,67 @@ using UnityEngine;
 
 public class Consumables : MonoBehaviour
 {
-    [SerializeField] private float timerDuration = 6f;
+    [SerializeField] private float powerUpTimerDuration = 8f;
+    [SerializeField] private float foodTimerDuration = 5f;
     [SerializeField] protected Randomizer randomizer;
     public PowerUps powerUps;
-    private Coroutine timerCoroutine;
+    public FoodType food;
+    private Coroutine powerUpTimerCoroutine;
+    private Coroutine foodTimerCoroutine;
+    protected SnakeController snake1Controller;
+    protected SnakeController snake2Controller;
 
     private void Start()
     {
+        randomizer.RandomizeFood();
         randomizer.RandomizePowerUp();
-        StartTimer();
+        StartPowerUpTimer();
+        StartFoodTimer();
     }
 
-    private void StartTimer()
+    private void StartPowerUpTimer()
     {
-        
-        timerCoroutine = StartCoroutine(TimerCoroutine());
+        powerUpTimerCoroutine = StartCoroutine(PowerUpTimerCoroutine());
     }
 
-    private IEnumerator TimerCoroutine()
+    private void StartFoodTimer()
     {
-        yield return new WaitForSeconds(timerDuration);
+        foodTimerCoroutine = StartCoroutine(FoodTimerCoroutine());
+    }
+
+    private IEnumerator PowerUpTimerCoroutine()
+    {
+        yield return new WaitForSeconds(powerUpTimerDuration);
         randomizer.RandomizePowerUp();
-        StartTimer();
+        StartPowerUpTimer();
     }
 
-    
-    private void StopTimer()
+    private IEnumerator FoodTimerCoroutine()
     {
-        if (timerCoroutine != null)
+        yield return new WaitForSeconds(foodTimerDuration);
+        randomizer.RandomizeFood();
+        StartFoodTimer();
+    }
+
+    private void StopPowerUpTimer()
+    {
+        if (powerUpTimerCoroutine != null)
         {
-            StopCoroutine(timerCoroutine);
+            StopCoroutine(powerUpTimerCoroutine);
         }
     }
 
-    
+    private void StopFoodTimer()
+    {
+        if (foodTimerCoroutine != null)
+        {
+            StopCoroutine(foodTimerCoroutine);
+        }
+    }
+
     private void OnDestroy()
     {
-        StopTimer();
+        StopPowerUpTimer();
+        StopFoodTimer();
     }
 }
