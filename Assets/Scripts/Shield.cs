@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO.Pipes;
+using TMPro;
 using UnityEngine;
 
 public class Shield : PowerUp
 {
-    
+    [SerializeField] TextMeshProUGUI shieldText;
     protected override void ImplementPowerUp()
     {
         spriteRenderer.enabled = false;
         collider2D.enabled = false;
+        shieldText.enabled = true;
         for (int i = 1; i < snakeController.segments.Count; i++)
         {
             snakeController.segments[i].GetComponent<BoxCollider2D>().enabled = false;
@@ -20,20 +22,16 @@ public class Shield : PowerUp
 
     private IEnumerator DisableShield()
     {
-        Debug.Log("Coroutine started");
+
         yield return new WaitForSeconds(5f);
-        Debug.Log("5 seconds elapsed");
+
+        shieldText.enabled = false;
         for (int i = 1; i < snakeController.segments.Count; i++)
         {
             snakeController.segments[i].GetComponent<BoxCollider2D>().enabled = true;
         }
         SegmentCollider.enabled = true;
-        Debug.Log("Colliders Activated");
+
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        ImplementPowerUp();
-        randomizer.RandomizePowerUp();
-    }
-}
+}   

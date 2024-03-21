@@ -92,11 +92,15 @@ public class SnakeController : MonoBehaviour
 
     public void Grow(int segmentCount)
     {
-        for(int i = 0;  i < segmentCount; i++) {
-            Transform segment = Instantiate(segmentPrefab);
+        
+        Vector3 spawnPosition = transform.position - (Vector3)direction.normalized * 0.5f; 
+
+        for (int i = 0; i < segmentCount; i++)
+        {
+            Vector3 adjustedSpawnPosition = spawnPosition - (i + 1) * 0.5f * (Vector3)direction.normalized;
+            Transform segment = Instantiate(segmentPrefab, adjustedSpawnPosition, Quaternion.identity);
             segments.Add(segment);
-            segment.position = segments[segments.Count - 1].position;
-        }  
+        }
     }
 
     private void ResetGame()
