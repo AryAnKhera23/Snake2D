@@ -40,12 +40,6 @@ public class SoundManager : MonoBehaviour
         IsMute = status;
     }
 
-    public void SetVolume(float volume)
-    {
-        Volume = volume;
-        soundEffect.volume = volume;
-        soundMusic.volume = volume;
-    }
     public void PlayBGM(Sounds soundType)
     {
         if (IsMute)
