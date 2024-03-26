@@ -152,7 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1efe33679591df644b0076360924c896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDuration: 8
+  powerUpTimerDuration: 8
+  foodTimerDuration: 5
   randomizer: {fileID: 805182251}
   powerUps: 0
   food: 0
@@ -1050,7 +1051,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c7f1b37646d0b4db6a6d5abfaa4255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDuration: 6
+  powerUpTimerDuration: 8
+  foodTimerDuration: 5
   randomizer: {fileID: 805182251}
   powerUps: 0
   food: 0
@@ -1333,7 +1335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91d5e3f58de64647aa24af69aa97566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDuration: 6
+  powerUpTimerDuration: 8
+  foodTimerDuration: 5
   randomizer: {fileID: 805182251}
   powerUps: 1
   food: 0
@@ -1744,7 +1747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a27393759bd1d7478a50337d1266894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDuration: 6
+  powerUpTimerDuration: 8
+  foodTimerDuration: 5
   randomizer: {fileID: 805182251}
   powerUps: 2
   food: 0
@@ -1923,7 +1927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c506db6b74760354db668577f6e34294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.2
+  moveSpeed: 0.7
   speedMultiplier: 35
   segmentPrefab: {fileID: 5059902988669279538, guid: 19edbb5de2ddd0642bb4b93630da027d, type: 3}
   gameOver: {fileID: 335744121}

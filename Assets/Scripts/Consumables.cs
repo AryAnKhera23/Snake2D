@@ -9,62 +9,45 @@ public class Consumables : MonoBehaviour
     [SerializeField] protected Randomizer randomizer;
     public PowerUps powerUps;
     public FoodType food;
-    private Coroutine powerUpTimerCoroutine;
-    private Coroutine foodTimerCoroutine;
     protected SnakeController snake1Controller;
     protected SnakeController snake2Controller;
 
     private void Start()
     {
+        RandomizeConsumables();
+        StartConsumableTimer();
+    }
+
+    private void RandomizeConsumables()
+    {
         randomizer.RandomizeFood();
         randomizer.RandomizePowerUp();
+    }
+
+    private  void StartConsumableTimer()
+    {
         StartPowerUpTimer();
         StartFoodTimer();
     }
-
     private void StartPowerUpTimer()
     {
-        powerUpTimerCoroutine = StartCoroutine(PowerUpTimerCoroutine());
+        Invoke(nameof(PowerUpTimerCoroutine), powerUpTimerDuration);
     }
 
     private void StartFoodTimer()
     {
-        foodTimerCoroutine = StartCoroutine(FoodTimerCoroutine());
+        Invoke(nameof(FoodTimerCoroutine), foodTimerDuration);
     }
 
-    private IEnumerator PowerUpTimerCoroutine()
+    private void PowerUpTimerCoroutine()
     {
-        yield return new WaitForSeconds(powerUpTimerDuration);
         randomizer.RandomizePowerUp();
         StartPowerUpTimer();
     }
 
-    private IEnumerator FoodTimerCoroutine()
+    private void FoodTimerCoroutine()
     {
-        yield return new WaitForSeconds(foodTimerDuration);
         randomizer.RandomizeFood();
         StartFoodTimer();
-    }
-
-    private void StopPowerUpTimer()
-    {
-        if (powerUpTimerCoroutine != null)
-        {
-            StopCoroutine(powerUpTimerCoroutine);
-        }
-    }
-
-    private void StopFoodTimer()
-    {
-        if (foodTimerCoroutine != null)
-        {
-            StopCoroutine(foodTimerCoroutine);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        StopPowerUpTimer();
-        StopFoodTimer();
     }
 }

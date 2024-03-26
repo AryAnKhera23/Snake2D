@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Shield : PowerUp
 {
-    [SerializeField] TextMeshProUGUI shieldText;
+    [SerializeField] private TextMeshProUGUI shieldText;
     protected override void ImplementPowerUp(int player)
     {
         

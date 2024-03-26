@@ -13,7 +13,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource soundMusic;
     [SerializeField] private SoundType[] Sounds;
     bool IsMute = false;
-    float Volume = 1f;
+    //float Volume = 1f;
 
     private void Awake()
     {

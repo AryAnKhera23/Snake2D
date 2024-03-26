@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] Button PlayButton;
-    [SerializeField] Button MenuButton;
-    [SerializeField] Button SinglePlayerButton;
-    [SerializeField] Button TwoPlayerButton;
-    [SerializeField] GameObject SelectModeObject;
+    [SerializeField] private Button PlayButton;
+    [SerializeField] private Button MenuButton;
+    [SerializeField] private Button SinglePlayerButton;
+    [SerializeField] private Button TwoPlayerButton;
+    [SerializeField] private GameObject SelectModeObject;
     
     public void Awake()
     {

@@ -11,7 +11,6 @@ public class SnakeController : MonoBehaviour
     [SerializeField] private Transform segmentPrefab;
     [SerializeField] private GameOverController gameOver;
     [SerializeField] public int player = 1;
-    [SerializeField] private float gameOverDelay = 1f;
     private float nextUpdate;
     private float horizontal;
     private float vertical;
