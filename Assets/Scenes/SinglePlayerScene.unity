@@ -1343,6 +1343,7 @@ MonoBehaviour:
   SegmentCollider: {fileID: 6023081841518274056, guid: 19edbb5de2ddd0642bb4b93630da027d, type: 3}
   collider2D: {fileID: 1474686899}
   spriteRenderer: {fileID: 1474686898}
+  scoreBoostAmount: 0
 --- !u!1 &1476614992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,7 +1933,6 @@ MonoBehaviour:
   segmentPrefab: {fileID: 5059902988669279538, guid: 19edbb5de2ddd0642bb4b93630da027d, type: 3}
   gameOver: {fileID: 335744121}
   player: 1
-  gameOverDelay: 1
   segments: []
   originalSpeed: 0
 --- !u!1001 &1124931954112840834

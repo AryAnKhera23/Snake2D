@@ -143,7 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7b8ccaec24d0c4b9ca17be46eaba22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDuration: 6
+  powerUpTimerDuration: 8
+  foodTimerDuration: 5
   randomizer: {fileID: 0}
   powerUps: 0
   food: 1
+  shrinkAmount: 3

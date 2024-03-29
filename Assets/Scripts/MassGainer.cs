@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MassGainer : Food
 {
+    [SerializeField] private int growAmount;
     protected override void ImplementFood(int player)
     {
         SoundManager.Instance.Play(Sounds.MassGainerPickup);
@@ -11,11 +12,11 @@ public class MassGainer : Food
         collider2D.enabled = false;
         if (player == 1)
         {
-            snake1Controller.Grow(1);
+            snake1Controller.Grow(growAmount);
         }
         else if(player == 2) 
         {
-            snake2Controller.Grow(1);
+            snake2Controller.Grow(growAmount);
         }
     }
 }

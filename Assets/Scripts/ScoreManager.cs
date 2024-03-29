@@ -6,6 +6,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     private TextMeshProUGUI scoreText;
+    private int scoreMultiplier = 10;
     [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField] private SnakeController snakeController;
 
@@ -17,16 +18,14 @@ public class ScoreManager : MonoBehaviour
     {
         scoreText = GetComponent<TextMeshProUGUI>();
 
-        
         highScore = PlayerPrefs.GetInt(HighScoreKey, 0);
         UpdateScoreText();
     }
 
     private void Update()
     {
-        int currentScore = snakeController.segments.Count * 10;
+        int currentScore = snakeController.segments.Count * scoreMultiplier;
 
-        
         if (currentScore > highScore)
         {
             highScore = currentScore;
@@ -38,7 +37,7 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScoreText()
     {
-        scoreText.text = "Score: " + (snakeController.segments.Count * 10).ToString();
+        scoreText.text = "Score: " + (snakeController.segments.Count * scoreMultiplier).ToString();
         highScoreText.text = "HighScore: " + highScore.ToString();
     }
 

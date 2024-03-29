@@ -18,9 +18,6 @@ public class SnakeController : MonoBehaviour
     public List<Transform> segments;
     public float originalSpeed;
     
-
-
-    
     private void Start()
     {
         originalSpeed = moveSpeed;

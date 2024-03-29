@@ -15,7 +15,11 @@ public class MenuController : MonoBehaviour
     
     public void Awake()
     {
+       AddButtonListeners();
+    }
 
+    private void AddButtonListeners()
+    {
         PlayButton.onClick.AddListener(SelectMode);
         MenuButton.onClick.AddListener(Quit);
         SinglePlayerButton.onClick.AddListener(LoadSinglePlayerScene);
@@ -40,8 +44,6 @@ public class MenuController : MonoBehaviour
     private void SelectMode()
     {
         SoundManager.Instance.Play(Sounds.ButtonClick);
-        
-
         SelectModeObject.SetActive(true);
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScoreBoost : PowerUp
 {
+    [SerializeField] private int scoreBoostAmount;
     protected override void ImplementPowerUp(int player)
     {
         SoundManager.Instance.Play(Sounds.PowerUpPickup);
@@ -11,11 +12,11 @@ public class ScoreBoost : PowerUp
         collider2D.enabled = false;
         if(player == 1)
         {
-            snake1Controller.Grow(5);
+            snake1Controller.Grow(scoreBoostAmount);
         }
         else if(player == 2)
         {
-            snake2Controller.Grow(5);
+            snake2Controller.Grow(scoreBoostAmount);
         }
         
     }
