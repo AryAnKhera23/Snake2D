@@ -1753,7 +1753,7 @@ GameObject:
   - component: {fileID: 1928661278}
   - component: {fileID: 1928661280}
   m_Layer: 5
-  m_Name: Title
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1828,11 +1828,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1928661276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5efbef80220a7c14c8659ce8d5d75316, type: 3}
+  m_Script: {fileID: 11500000, guid: a670ab5fd818d4847bf3c9a557ac6f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayButton: {fileID: 738521100}
-  MenuButton: {fileID: 1551561780}
+  QuitButton: {fileID: 1551561780}
   SinglePlayerButton: {fileID: 1652323729}
   TwoPlayerButton: {fileID: 802030053}
   SelectModeObject: {fileID: 222533227}
