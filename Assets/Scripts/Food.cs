@@ -24,7 +24,6 @@ public abstract class Food : Consumables
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
         if(collision.TryGetComponent<SnakeController>(out snake1Controller))
         {
             if(snake1Controller.player == 1)
@@ -40,7 +39,6 @@ public abstract class Food : Consumables
                 ImplementFood(2);
                
             }
-
         }
     }
 

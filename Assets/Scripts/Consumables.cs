@@ -31,21 +31,21 @@ public class Consumables : MonoBehaviour
     }
     private void StartPowerUpTimer()
     {
-        Invoke(nameof(PowerUpTimerCoroutine), powerUpTimerDuration);
+        Invoke(nameof(PowerUpTimer), powerUpTimerDuration);
     }
 
     private void StartFoodTimer()
     {
-        Invoke(nameof(FoodTimerCoroutine), foodTimerDuration);
+        Invoke(nameof(FoodTimer), foodTimerDuration);
     }
 
-    private void PowerUpTimerCoroutine()
+    private void PowerUpTimer()
     {
         randomizer.RandomizePowerUp();
         StartPowerUpTimer();
     }
 
-    private void FoodTimerCoroutine()
+    private void FoodTimer()
     {
         randomizer.RandomizeFood();
         StartFoodTimer();

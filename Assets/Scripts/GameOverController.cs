@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 public class GameOverController : MonoBehaviour
 {
-    [SerializeField] Button playAgainButton;
-    [SerializeField] Button returnToMenuButton;
-    [SerializeField] TextMeshProUGUI score;
-    [SerializeField] GameObject snake;
-    [SerializeField] GameObject consumables;
-    [SerializeField] GameObject player1Win;
-    [SerializeField] GameObject player2Win;
+    [SerializeField] private Button playAgainButton;
+    [SerializeField] private Button returnToMenuButton;
+    [SerializeField] private TextMeshProUGUI score;
+    [SerializeField] private GameObject snake;
+    [SerializeField] private GameObject consumables;
+    [SerializeField] private GameObject player1Win;
+    [SerializeField] private GameObject player2Win;
     public void Awake()
     {
         playAgainButton.onClick.AddListener(ReloadScene);

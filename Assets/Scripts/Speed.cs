@@ -5,30 +5,24 @@ using UnityEngine;
 
 public class Speed : PowerUp
 {
-    [SerializeField] TextMeshProUGUI speedText;
+    [SerializeField] private TextMeshProUGUI speedText;
     
     protected override void ImplementPowerUp(int player)
     {
-        
-            
-            SoundManager.Instance.Play(Sounds.PowerUpPickup);
-            spriteRenderer.enabled = false;
-            collider2D.enabled = false;
-            speedText.enabled = true;
-            if(player == 1) {
-                IncreaseSpeed(snake1Controller);
-            }
-            else if(player == 2) {
-                IncreaseSpeed(snake2Controller);
-            }
-            
-        
-        
+       SoundManager.Instance.Play(Sounds.PowerUpPickup);
+       spriteRenderer.enabled = false;
+       collider2D.enabled = false;
+       speedText.enabled = true;
+       if(player == 1) {
+           IncreaseSpeed(snake1Controller);
+       }
+       else if(player == 2) {
+           IncreaseSpeed(snake2Controller);
+       }
     }
 
     private void IncreaseSpeed(SnakeController snakeController)
     {
-        
         snakeController.moveSpeed += snakeController.moveSpeed;
         Invoke(nameof(ResetSpeed), 5f);
     }
